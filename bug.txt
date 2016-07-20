@@ -1,0 +1,10 @@
+
+
+# description of the bug
+
+
+# steps to reproduce the bug
+- let x or o win
+- click an available button
+- the game will still allow you to put an x or o in available buttons
+- it will also let the player (x or o) that lost win
