@@ -4,9 +4,41 @@
     </title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="script.js"></script>
-
 </head>
 
+
+<div class="game">
+    <div class="board">
+        <div class="cell border00">
+            <svg xmlns="http://www.w3.org/2000/svg">
+                <circle cx="75" cy="75" r="40" fill="transparent" stroke="black" stroke-width="20"/>
+            </svg>
+        </div>
+        <div class="cell border01">
+            <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150">
+                <path stroke="black" stroke-width="20"  d="M35,35 L115,115 M115,35 L35,115"/>
+            </svg>
+        </div>
+        <div class="cell border02">
+        </div>
+        <div class="cell border10">
+        </div>
+        <div class="cell border11">
+        </div>
+        <div class="cell border12">
+        </div>
+        <div class="cell border20">
+        </div>
+        <div class="cell border21">
+        </div>
+        <div class="cell border22">
+        </div>
+    </div>
+</div>
+
+
+
+<!--
 <div class="welcome">
     Welcome to tic tac toe
 </div>
@@ -29,9 +61,4 @@
         <td><button class="xo-button" onclick="cellClicked(this, 2, 2)">&nbsp;</button></td>
     </tr>
 </table>
-
-<!--
-<button onclick="cellClicked()">
-    Syrus
-</button>
 -->

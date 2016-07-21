@@ -6,3 +6,85 @@
 .xo-button {
     font-family: "Courier New";
 }
+
+.game {
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    left: 50%;
+    top: 50%;
+    margin-left: -225px;
+    margin-top: -225px;
+    //background-color: aqua;
+}
+
+.board {
+    width: 100%;
+    height: 100%;
+    //background-color: aquamarine;
+}
+
+.cell {
+    width: 150px;
+    height: 150px;
+    //background-color: pink;
+    float: left;
+    cursor: pointer;
+}
+
+.border00 {
+    box-shadow:
+        inset -5px -5px 0px 0px #000;
+}
+
+.border01 {
+    box-shadow:
+        inset 5px 0px 0px 0px #000,
+        inset -5px -5px 0px 0px #000;
+}
+
+.border02 {
+    box-shadow:
+        inset 5px 0px 0px 0px #000,
+        inset 0px -5px 0px 0px #000;
+}
+
+.border10 {
+    box-shadow:
+        inset 0px 5px 0px 0px #000,
+        inset -5px -5px 0px 0px #000;
+}
+
+.border11 {
+    box-shadow:
+            inset 5px 5px 0px 0px #000,
+            inset -5px -5px 0px 0px #000;
+}
+
+.border12 {
+    box-shadow:
+            inset 5px 5px 0px 0px #000,
+            inset 0px -5px 0px 0px #000;
+}
+
+.border20 {
+    box-shadow:
+            inset 0px 5px 0px 0px #000,
+            inset -5px 0px 0px 0px #000;
+}
+
+.border21 {
+    box-shadow:
+            inset 5px 5px 0px 0px #000,
+            inset -5px 0px 0px 0px #000;
+}
+
+.border22 {
+    box-shadow:
+            inset 5px 5px 0px 0px #000,
+            inset 0px 0px 0px 0px #000;
+}
+
+.o {
+
+}
