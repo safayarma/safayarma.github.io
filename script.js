@@ -4,11 +4,19 @@ var board = [
   [' ', ' ', ' ']
 ];
 
+var oSvg = '<svg xmlns="http://www.w3.org/2000/svg">' +
+               '<circle cx="75" cy="75" r="40" fill="transparent" stroke="black" stroke-width="20"/>' +
+           '</svg>';
+         
+var xSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150">' +
+                '<path stroke="black" stroke-width="20"  d="M35,35 L115,115 M115,35 L35,115"/>' +
+            '</svg>';
+         
 var clickCounter = 0;
 var gameOver = false;
 
-function cellClicked(button, rowIndex, colIndex){
-    console.log('Button clicked: ', button, ', rowIndex: ', rowIndex, ', colIndex: ', colIndex);
+function cellClicked(div, rowIndex, colIndex){
+    console.log('Button clicked: ', div, ', rowIndex: ', rowIndex, ', colIndex: ', colIndex);
 
     if (gameOver === false && board[rowIndex][colIndex] === " ") {
 
@@ -18,16 +26,17 @@ function cellClicked(button, rowIndex, colIndex){
         var player = ' ';
         if (clickCounter % 2 === 1){
             player = 'x';
+            div.innerHTML = xSvg;
         } else {
             player = 'o';
+            div.innerHTML = oSvg;
         }
 
-        //sets the spot in the board that matches the spot the button is to x or o
+        //sets the spot in the board that matches the spot the div is to x or o
         board[rowIndex][colIndex] = player;
         console.log('spot in the board at the given coordinate after update has:',  board[rowIndex][colIndex]  )
 
-        //sets button label to x or o
-        button.innerHTML = player;
+        //sets div label to x or o
 
         var winner = whoWon();
         console.log('who won row? ', winner);
@@ -112,3 +121,5 @@ function whoWonDiagonal(){
 
     return whoWon;
 }
+
+
