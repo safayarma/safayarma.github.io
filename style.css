@@ -34,57 +34,63 @@
 
 .border00 {
     box-shadow:
-        inset -5px -5px 0px 0px #000;
+        inset -5px -5px 0px 0px #fff;
 }
 
 .border01 {
     box-shadow:
-        inset 5px 0px 0px 0px #000,
-        inset -5px -5px 0px 0px #000;
+        inset 5px 0px 0px 0px #fff,
+        inset -5px -5px 0px 0px #fff;
 }
 
 .border02 {
     box-shadow:
-        inset 5px 0px 0px 0px #000,
-        inset 0px -5px 0px 0px #000;
+        inset 5px 0px 0px 0px #fff,
+        inset 0px -5px 0px 0px #fff;
 }
 
 .border10 {
     box-shadow:
-        inset 0px 5px 0px 0px #000,
-        inset -5px -5px 0px 0px #000;
+        inset 0px 5px 0px 0px #fff,
+        inset -5px -5px 0px 0px #fff;
 }
 
 .border11 {
     box-shadow:
-            inset 5px 5px 0px 0px #000,
-            inset -5px -5px 0px 0px #000;
+            inset 5px 5px 0px 0px #fff,
+            inset -5px -5px 0px 0px #fff;
 }
 
 .border12 {
     box-shadow:
-            inset 5px 5px 0px 0px #000,
-            inset 0px -5px 0px 0px #000;
+            inset 5px 5px 0px 0px #fff,
+            inset 0px -5px 0px 0px #fff;
 }
 
 .border20 {
     box-shadow:
-            inset 0px 5px 0px 0px #000,
-            inset -5px 0px 0px 0px #000;
+            inset 0px 5px 0px 0px #fff,
+            inset -5px 0px 0px 0px #fff;
 }
 
 .border21 {
     box-shadow:
-            inset 5px 5px 0px 0px #000,
-            inset -5px 0px 0px 0px #000;
+            inset 5px 5px 0px 0px #fff,
+            inset -5px 0px 0px 0px #fff;
 }
 
 .border22 {
     box-shadow:
-            inset 5px 5px 0px 0px #000,
-            inset 0px 0px 0px 0px #000;
+            inset 5px 5px 0px 0px #fff,
+            inset 0px 0px 0px 0px #fff;
 }
 
 .o {
 
+}
+
+.body {
+    display: block;
+    margin: 8px;
+    background: black;
 }

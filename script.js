@@ -5,15 +5,16 @@ var board = [
 ];
 
 var oSvg = '<svg xmlns="http://www.w3.org/2000/svg">' +
-               '<circle cx="75" cy="75" r="40" fill="transparent" stroke="black" stroke-width="20"/>' +
+               '<circle cx="75" cy="75" r="40" fill="transparent" stroke="white" stroke-width="20"/>' +
            '</svg>';
          
 var xSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150">' +
-                '<path stroke="black" stroke-width="20"  d="M35,35 L115,115 M115,35 L35,115"/>' +
+                '<path stroke="white" stroke-width="20"  d="M35,35 L115,115 M115,35 L35,115"/>' +
             '</svg>';
          
 var clickCounter = 0;
 var gameOver = false;
+
 
 function cellClicked(div, rowIndex, colIndex){
     console.log('Button clicked: ', div, ', rowIndex: ', rowIndex, ', colIndex: ', colIndex);
@@ -36,10 +37,11 @@ function cellClicked(div, rowIndex, colIndex){
         board[rowIndex][colIndex] = player;
         console.log('spot in the board at the given coordinate after update has:',  board[rowIndex][colIndex]  )
 
+
         //sets div label to x or o
 
         var winner = whoWon();
-        console.log('who won row? ', winner);
+        console.log('who won? ', winner);
 
         if (winner === 'x' || winner === 'o') {
             alert('Congrats, player: ' + winner + ' won!');
@@ -71,7 +73,7 @@ function whoWon() {
   }
 
   // add other checks here
-  var winner = whoWonColumn()
+  winner = whoWonColumn()
 
   if (winner === "x" || winner === "o") {
     return winner;
@@ -90,7 +92,7 @@ function whoWon() {
 function whoWonRow(){
     var whoWon = ' ';
     for (var rowIndex=0; rowIndex<3; rowIndex++) {
-        if (board[rowIndex][0] === board[rowIndex][1] && board[rowIndex][1] === board[rowIndex][2]) {
+        if (board[rowIndex][0] === board[rowIndex][1] && board[rowIndex][1] === board[rowIndex][2] && board[rowIndex][0] != " ") {
            whoWon = board[rowIndex][0];
            break;
         }
@@ -102,7 +104,7 @@ function whoWonRow(){
 function whoWonColumn(){
     var whoWon = ' ';
     for (var columnIndex=0; columnIndex<3; columnIndex++) {
-        if (board[0][columnIndex] === board[1][columnIndex] && board[1][columnIndex] === board[2][columnIndex]) {
+        if (board[0][columnIndex] === board[1][columnIndex] && board[1][columnIndex] === board[2][columnIndex] && board[0][columnIndex] != " ") {
            whoWon = board[0][columnIndex];
            break;
         }
