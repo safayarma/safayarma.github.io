@@ -7,22 +7,46 @@
     font-family: "Courier New";
 }
 
-.game {
+.center-section {
     position: absolute;
-    width: 450px;
-    height: 450px;
+    width:  450px;
+    height: 650px;
     left: 50%;
     top: 50%;
     margin-left: -225px;
-    margin-top: -225px;
-    //background-color: aqua;
+    margin-top: -325px;
+    //background-color: green;
 }
 
 .board {
-    width: 100%;
-    height: 100%;
-    //background-color: aquamarine;
+    width: 450px;
+    height: 450px;
+    //background-color: aqua;
 }
+
+.x-score {
+    float: left;
+    width: 225px;
+    height: 100px;
+    //background-color: red;
+    color: white;
+}
+
+.o-score {
+    float: left;
+    width: 225;
+    height: 100px;
+    //background-color: blue;
+    color: white;
+}
+
+.messages {
+    width: 450px;
+    height: 100px;
+    //background-color: pink;
+    color: white;
+}
+
 
 .cell {
     width: 150px;

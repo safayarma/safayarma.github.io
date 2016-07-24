@@ -4,6 +4,9 @@ var board = [
   [' ', ' ', ' ']
 ];
 
+var xWinCount = 0
+var oWinCount = 0
+
 var oSvg = '<svg xmlns="http://www.w3.org/2000/svg">' +
                '<circle cx="75" cy="75" r="40" fill="transparent" stroke="white" stroke-width="20"/>' +
            '</svg>';
@@ -25,6 +28,8 @@ function cellClicked(div, rowIndex, colIndex){
         //Adds to the clickCounter variable
         clickCounter += 1;
         var player = ' ';
+
+
         if (clickCounter % 2 === 1){
             player = 'x';
             div.innerHTML = xSvg;
@@ -38,18 +43,24 @@ function cellClicked(div, rowIndex, colIndex){
         console.log('spot in the board at the given coordinate after update has:',  board[rowIndex][colIndex]  )
 
 
-        //sets div label to x or o
-
         var winner = whoWon();
         console.log('who won? ', winner);
 
         if (winner === 'x' || winner === 'o') {
-            alert('Congrats, player: ' + winner + ' won!');
+            alert('Congrats, player ' + winner + ' won!');
+            if (winner === "x"){
+                xWinCount += 1;
+            } else {
+                oWinCount += 1;
+            }
             gameOver = true;
+
+            document.getElementsByClassName("x-score")[0].innerHTML = "X wins: " + xWinCount;
+            document.getElementsByClassName("o-score")[0].innerHTML = "O wins: " + oWinCount;
         }
 
-        if (winner === 'x' || winner === 'o' || clickCounter === 9) {
-            alert("Game Over");
+        if (clickCounter === 9) {
+            alert("Draw");
             gameOver = true;
 
         }
