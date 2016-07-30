@@ -15,7 +15,7 @@ var xSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150">' +
                 '<path stroke="white" stroke-width="20"  d="M35,35 L115,115 M115,35 L35,115"/>' +
             '</svg>';
 
-var clickCounter = 0;
+var turnCounter = 0;
 var gameOver = false;
 
 
@@ -23,15 +23,14 @@ function cellClicked(div, rowIndex, colIndex){
     console.log('Button clicked: ', div, ', rowIndex: ', rowIndex, ', colIndex: ', colIndex);
 
 
-    if (gameOver === false && board[rowIndex][colIndex] === " ") {
+    if (gameOver === false &&
+        board[rowIndex][colIndex] === " " &&
+        turnCounter % 2 === 0) {
+        //Adds to the turnCounter variable
+        turnCounter += 1;
 
-
-        //Adds to the clickCounter variable
-        clickCounter += 1;
         var player = ' ';
-
-
-        if (clickCounter % 2 === 1){
+        if (turnCounter % 2 === 1){
             player = 'x';
             div.innerHTML = xSvg;
         } else {
@@ -43,58 +42,64 @@ function cellClicked(div, rowIndex, colIndex){
         board[rowIndex][colIndex] = player;
         console.log('spot in the board at the given coordinate after update has:',  board[rowIndex][colIndex]  )
 
+        checkGameOver();
 
-        var winner = whoWon();
-        console.log('who won? ', winner);
-
-        if (winner === 'x' || winner === 'o') {
-            alert('Congrats, player ' + winner + ' won!');
-            if (winner === "x"){
-                xWinCount += 1;
-            } else {
-                oWinCount += 1;
-            }
-            gameOver = true;
-
-            document.getElementsByClassName("x-score")[0].innerHTML = "X wins: " + xWinCount;
-            document.getElementsByClassName("o-score")[0].innerHTML = "O wins: " + oWinCount;
+        if (gameOver == false) {
+            setTimeout(aiPlay, 2000);
         }
-
-        if (clickCounter === 9) {
-            alert("Draw");
-            gameOver = true;
-
-        }
-    }
-
-    printEmptyCells()
-
- }
-
-
-function printBoard(){
-    for (var i=0; i<3; i++){
-        console.log(board[i][0], board[i][1], board[i][2]);
     }
 }
 
-function whoWon() {
+function checkGameOver() {
+    var winner = whoWon(board);
+    console.log('who won? ', winner);
+
+    if (winner === 'x' || winner === 'o') {
+        gameOver = true;
+
+        alert('Congrats, player ' + winner + ' won!');
+        if (winner === "x"){
+            xWinCount += 1;
+        } else {
+            oWinCount += 1;
+        }
+
+        document.getElementsByClassName("x-score")[0].innerHTML = "X wins: " + xWinCount;
+        document.getElementsByClassName("o-score")[0].innerHTML = "O wins: " + oWinCount;
+    }
+
+    if (turnCounter === 9) {
+        alert("Draw");
+        gameOver = true;
+
+    }
+}
+
+
+
+function printBoard(myBoard){
+    for (var i=0; i<3; i++){
+        console.log(myBoard[i][0], myBoard[i][1], myBoard[i][2]);
+    }
+}
+
+function whoWon(myBoard) {
   // TODO: add checks to see if anyone won.
   // this functions should return x, o, or ' '.
-  var winner = whoWonRow()
+  var winner = whoWonRow(myBoard)
 
   if (winner === 'x' || winner === 'o') {
     return winner;
   }
 
   // add other checks here
-  winner = whoWonColumn()
+  winner = whoWonColumn(myBoard)
 
   if (winner === "x" || winner === "o") {
     return winner;
   }
 
-  var winner = whoWonDiagonal()
+  var winner = whoWonDiagonal(myBoard)
 
   if (winner === "x" || winner === "o") {
     return winner;
@@ -103,11 +108,11 @@ function whoWon() {
   return ' ';
 }
 
-function whoWonRow(){
+function whoWonRow(myBoard){
     var whoWon = ' ';
     for (var rowIndex=0; rowIndex<3; rowIndex++) {
-        if (board[rowIndex][0] === board[rowIndex][1] && board[rowIndex][1] === board[rowIndex][2] && board[rowIndex][0] != " ") {
-           whoWon = board[rowIndex][0];
+        if (myBoard[rowIndex][0] === myBoard[rowIndex][1] && myBoard[rowIndex][1] === myBoard[rowIndex][2] && myBoard[rowIndex][0] != " ") {
+           whoWon = myBoard[rowIndex][0];
            break;
         }
     }
@@ -115,11 +120,11 @@ function whoWonRow(){
     return whoWon;
 }
 
-function whoWonColumn(){
+function whoWonColumn(myBoard){
     var whoWon = ' ';
     for (var columnIndex=0; columnIndex<3; columnIndex++) {
-        if (board[0][columnIndex] === board[1][columnIndex] && board[1][columnIndex] === board[2][columnIndex] && board[0][columnIndex] != " ") {
-           whoWon = board[0][columnIndex];
+        if (myBoard[0][columnIndex] === myBoard[1][columnIndex] && myBoard[1][columnIndex] === myBoard[2][columnIndex] && myBoard[0][columnIndex] != " ") {
+           whoWon = myBoard[0][columnIndex];
            break;
         }
     }
@@ -127,13 +132,13 @@ function whoWonColumn(){
     return whoWon;
 }
 
-function whoWonDiagonal(){
+function whoWonDiagonal(myBoard){
     var whoWon = ' ';
 
-    if (board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
-        whoWon = board[0][0];
-    }else if (board[0][2] === board[1][1] && board[1][1] === board[2][0]) {
-        whoWon = board[0][2];
+    if (myBoard[0][0] === myBoard[1][1] && myBoard[1][1] === myBoard[2][2]) {
+        whoWon = myBoard[0][0];
+    }else if (myBoard[0][2] === myBoard[1][1] && myBoard[1][1] === myBoard[2][0]) {
+        whoWon = myBoard[0][2];
     }
 
     return whoWon;
@@ -157,5 +162,136 @@ function printEmptyCells(){
     }
 
     console.log(emptyCellCounter);
+}
 
+function copyBoard() {
+    // create empty board
+    var newBoard = [
+      [' ', ' ', ' '],
+      [' ', ' ', ' '],
+      [' ', ' ', ' ']
+    ];
+
+    // copy every cell from board to new board
+    for (var rowIndex=0; rowIndex<3; rowIndex++) {
+        for (var columnIndex=0; columnIndex<3; columnIndex++) {
+            newBoard[rowIndex][columnIndex] = board[rowIndex][columnIndex];
+        }
+    }
+
+    return newBoard;
+}
+
+function aiPlay(){
+    console.log('---[ aiPlay');
+
+    var madeMove = makeWinningMove();
+
+    if (madeMove === false) {
+        madeMove = makeDefendingMove();
+    }
+
+    if (madeMove === false) {
+        makeOtherMove();
+    }
+
+    checkGameOver();
+}
+
+function placeO(rowIndex, columnIndex) {
+    console.log('-------------------[[[[[ yaaay!');
+    board[rowIndex][columnIndex] = "o";
+    document.getElementsByClassName("border" + rowIndex + columnIndex)[0].innerHTML = oSvg;
+    turnCounter += 1;
+}
+
+function makeWinningMove() {
+    for (var rowIndex=0; rowIndex<3; rowIndex++) {
+        for (var columnIndex=0; columnIndex<3; columnIndex++) {
+
+            if (board[rowIndex][columnIndex] === ' ') {
+                var newBoard = copyBoard();
+                newBoard[rowIndex][columnIndex] = 'o';
+                var winner = whoWon(newBoard)
+                if (winner === 'o') {
+                    placeO(rowIndex, columnIndex);
+                    return true;
+                }
+            }
+        }
+    }
+
+    return false;
+}
+
+function makeDefendingMove() {
+    for (var rowIndex=0; rowIndex<3; rowIndex++) {
+        for (var columnIndex=0; columnIndex<3; columnIndex++) {
+
+            if (board[rowIndex][columnIndex] === ' ') {
+                var newBoard = copyBoard();
+                newBoard[rowIndex][columnIndex] = 'x';
+                var winner = whoWon(newBoard)
+                if (winner === 'x') {
+                    placeO(rowIndex, columnIndex);
+                    return true;
+                }
+            }
+        }
+    }
+
+    return false;
+}
+
+
+function makeOtherMove() {
+    if (board[1][1] === ' ') {
+        placeO(1, 1);
+        return true;
+    }
+
+    //---- check corners
+    if (board[0][0] === ' ') {
+        placeO(0, 0);
+        return true;
+    }
+
+    if (board[0][2] === ' ') {
+        placeO(0, 2);
+        return true;
+    }
+
+    if (board[2][0] === ' ') {
+        placeO(2, 0);
+        return true;
+    }
+
+    if (board[2][2] === ' ') {
+        placeO(2, 2);
+        return true;
+    }
+
+    //--- check sides
+    if (board[0][1] === ' ') {
+        placeO(0, 1);
+        return true;
+    }
+
+    if (board[1][0] === ' ') {
+        placeO(1, 0);
+        return true;
+    }
+
+    if (board[1][2] === ' ') {
+        placeO(1, 2);
+        return true;
+    }
+
+    if (board[2][1] === ' ') {
+        placeO(2, 1);
+        return true;
+    }
+
+   // Note: should not be reachable
+    return false;
 }
