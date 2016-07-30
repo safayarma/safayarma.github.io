@@ -45,7 +45,7 @@ function cellClicked(div, rowIndex, colIndex){
         checkGameOver();
 
         if (gameOver == false) {
-            setTimeout(aiPlay, 2000);
+            setTimeout(aiPlay, 1000);
         }
     }
 }
@@ -57,7 +57,8 @@ function checkGameOver() {
     if (winner === 'x' || winner === 'o') {
         gameOver = true;
 
-        alert('Congrats, player ' + winner + ' won!');
+        showMessage('Congrats, player ' + winner + ' won!', true);
+
         if (winner === "x"){
             xWinCount += 1;
         } else {
@@ -69,13 +70,40 @@ function checkGameOver() {
     }
 
     if (turnCounter === 9) {
-        alert("Draw");
         gameOver = true;
-
+        showMessage("Draw", true);
     }
 }
 
+function showMessage(msg, showPlayAgain) {
+    document.getElementsByClassName("messages")[0].innerHTML = msg;
+    if (showPlayAgain === true) {
+        document.getElementsByClassName("play-again")[0].innerHTML = "click here to play again";
+    } else {
+        document.getElementsByClassName("play-again")[0].innerHTML = "";
+    }
+}
 
+function playAgain() {
+    console.log('----[ playAgain')
+    if (gameOver === true) {
+        board = [
+          [' ', ' ', ' '],
+          [' ', ' ', ' '],
+          [' ', ' ', ' ']
+        ];
+
+        gameOver = false;
+        turnCounter = 0;
+
+        showMessage('', false);
+
+        var cells = document.getElementsByClassName("cell");
+        for (var i = 0; i < cells.length; i++) {
+            cells[i].innerHTML = '';
+        }
+    }
+}
 
 function printBoard(myBoard){
     for (var i=0; i<3; i++){

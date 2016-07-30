@@ -1,10 +1,9 @@
-.welcome {
-    font-family: Arial;
-    color: green;
-}
-
-.xo-button {
-    font-family: "Courier New";
+.body {
+    font-family: "Arial Black", Gadget, sans-serif;
+    display: block;
+    margin: 8px;
+    background: black;
+    text-align: center;
 }
 
 .center-section {
@@ -30,6 +29,7 @@
     height: 100px;
     //background-color: red;
     color: white;
+    padding-top: 20px;
 }
 
 .o-score {
@@ -38,13 +38,23 @@
     height: 100px;
     //background-color: blue;
     color: white;
+    padding-top: 20px;
 }
 
 .messages {
     width: 450px;
-    height: 100px;
+    height: 50px;
     //background-color: pink;
     color: white;
+    text-align: center;
+}
+
+.play-again {
+    width: 450px;
+    height: 50px;
+    //background-color: pink;
+    color: white;
+    text-align: center;
 }
 
 
@@ -109,12 +119,3 @@
             inset 0px 0px 0px 0px #fff;
 }
 
-.o {
-
-}
-
-.body {
-    display: block;
-    margin: 8px;
-    background: black;
-}
