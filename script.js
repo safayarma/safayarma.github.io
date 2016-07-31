@@ -213,7 +213,7 @@ function copyBoard() {
 function aiPlay() {
     console.log('---[ aiPlay');
 
-//      var madeMove = makeRandomMove();
+//  var madeMove = makeRandomMove();
 
 //  var madeMove = makeFirstAvailableMove();
 
@@ -231,7 +231,6 @@ function aiPlay() {
 }
 
 function placeO(rowIndex, columnIndex) {
-//    console.log('-------------------[[[[[ yaaay!');
     board[rowIndex][columnIndex] = 'o';
     document.getElementsByClassName('border' + rowIndex + columnIndex)[0].innerHTML = oSvg;
     turnCounter += 1;
@@ -274,7 +273,7 @@ function makeDefendingMove() {
 
     return false;
 }
-/*
+
 function makeFirstAvailableMove() {
     for (var rowIndex=0; rowIndex<3; rowIndex++) {
         for (var columnIndex=0; columnIndex<3; columnIndex++) {
@@ -286,18 +285,16 @@ function makeFirstAvailableMove() {
         }
     }
 }
-/*
+
 function makeRandomMove() {
 
     while (true) {
-//       var rowIndex=0; rowIndex<3; rowIndex++
-//        var columnIndex=0; columnIndex<3; columnIndex++
         var randomRowIndex = getRandomInt(0, 2);
         var randomColumnIndex = getRandomInt(0, 2);
 
         console.log(randomRowIndex, randomColumnIndex);
 
-        if (board[randomRowIndex][randomColumnIndex] ===null) {
+        if (board[randomRowIndex][randomColumnIndex] === null) {
             placeO(randomRowIndex, randomColumnIndex);
             break;
         }
@@ -307,22 +304,6 @@ function makeRandomMove() {
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
-/*    for (var rowIndex=0; rowIndex<3; rowIndex++) {
-        function getRandomArbitrary(min, max) {
-            return Math.random() * (max - min) + min;
-        for (var columnIndex=0; columnIndex<3; columnIndex++) {
-            function getRandomArbitrary(min, max) {
-                return Math.random() * (max - min) + min;
-
-            if (board[rowIndex][columnIndex] === null) {
-                placeO(rowIndex, columnIndex);
-                return;
-            }
-        }
-    }
-}
-*/
 
 function makeOtherMove() {
     if (board[1][1] === null) {
